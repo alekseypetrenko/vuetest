@@ -20,6 +20,15 @@
       </div>
     </div>
 
+    <div class="container reactivity2">
+      <h2>Reactivity 2</h2>
+      {{ cars }}
+      <button @click="addToArrVersion1">Add to array 1</button>
+      <button @click="deleteFromArr">Delete</button>
+      <button @click="showArr">Show arr after DELETE</button>
+      <div v-if="isShow">{{ cars }}</div>
+    </div>
+
     <div class="container">
       <Child :person="person" v-for="person in people" :key="person.id" />
     </div>
@@ -56,9 +65,20 @@ export default {
         { id: 1, name: "Ivan", age: 20 },
         { id: 2, name: "Ann", age: 30 },
       ],
+      cars: [0, 1, 2],
+      isShow: false,
     };
   },
   methods: {
+    addToArrVersion1() {
+      this.cars[1] = 55;
+    },
+    deleteFromArr() {
+      delete this.cars[0];
+    },
+    showArr() {
+      this.isShow = true;
+    },
     changeAge() {
       this.son.age += 1;
     },
